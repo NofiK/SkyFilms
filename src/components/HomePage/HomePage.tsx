@@ -2,7 +2,13 @@ import React from 'react'
 import Head from 'next/head'
 import styles from './HomePage.module.scss'
 import HomePageFilmDescription from './HomePageFilmDescription/HomePageFilmDescription'
+import { useAppSelector } from '../../hooks/redux'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../../store/store'
 const HomePage = () => {
+  const {popularMovies} = useAppSelector(state=>state.movieReducer);
+  // const dispatch = useDispatch<AppDispatch>()
+console.log(popularMovies)
   return (
  <>
 <Head>
