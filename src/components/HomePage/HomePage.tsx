@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import styles from './HomePage.module.scss'
 import HomePageFilmDescription from './HomePageFilmDescription/HomePageFilmDescription'
 import { useAppSelector } from '../../hooks/redux'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../store/store'
+import { fetchPopularMoives } from '../../store/reducers/MovieSlice'
 const HomePage = () => {
-  const {popularMovies} = useAppSelector(state=>state.movieReducer);
-  // const dispatch = useDispatch<AppDispatch>()
-console.log(popularMovies)
+  const dispatch = useDispatch<AppDispatch>()
+  const popularMovies = useAppSelector(state=>state.movieReducer.popularMovies);
+  useEffect(() => {
+    dispatch(fetchPopularMoives(2))
+  },[])
   return (
  <>
 <Head>
@@ -16,7 +19,7 @@ console.log(popularMovies)
     <link rel="icon" href="/favicon.png" />
 </Head>
   <div> 
-    <img className={styles.backgroundIMG} src="https://ic.c4assets.com/brands/star-wars-episode-ix-the-rise-of-skywalker/1179c2e5-c457-404a-a8df-3dd4a4650725.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}" alt="" />
+    {popularMovies?.length > 0 && <img className={styles.backgroundIMG} src={"https://image.tmdb.org/t/p/original" + popularMovies[0].backdrop} alt="" />}
   </div>  
    <section className={styles.homePageContainer}>
     <HomePageFilmDescription />
