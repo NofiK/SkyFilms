@@ -2,10 +2,16 @@
     position: relative;
     z-index: 2;
   .navBar {
-    margin: 28px 56px 0 56px;
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
+    position:absolute;
+    width: 90%;
+    z-index: 3;
+    margin: 0px 65px 0 65px;
     color: white;
+
+
     div {
         display: flex;
       h2 {
@@ -20,7 +26,8 @@
   }
 
   .logoContainer {
-    top:-20px;
+    top:10px;
+    z-index: 5;
     position: absolute;
     left: 46%;
     .logo{

@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import MoviesService from "../../services/moviesService";
-
+import PopularMoviesProps from "../../types/movieTypes";
 const movieService = new MoviesService();
 
 interface MoviesProps {
-  popularMovies: any;
+  popularMovies: PopularMoviesProps[];
   isLoading: boolean;
   error: string;
 }

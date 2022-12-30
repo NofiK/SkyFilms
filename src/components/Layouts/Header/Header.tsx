@@ -35,7 +35,7 @@ const Header: React.FC<ChildrenProps> = ({ children }) => {
               <h2>Sign Up</h2>
             </Link>
           </div>
-        </div>
+          </div>
       </section>
       {children}
     </>
