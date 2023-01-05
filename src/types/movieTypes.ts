@@ -1,5 +1,5 @@
-export default interface PopularMoviesProps{
-    id: string,
+export default interface DefaultMovieProps {
+    id: number | string,
     title: string,
     genres_ids: number[],
     description: string,
@@ -8,3 +8,6 @@ export default interface PopularMoviesProps{
     miniPoster: string,
     backdrop:string,
 }
+// export default interface PopularMoviesProps{
+//     popularMovies: Array<PopularMovieProps>
+// }

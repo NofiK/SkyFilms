@@ -1,15 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import MoviesService from "../../services/moviesService";
-import PopularMoviesProps from "../../types/movieTypes";
+import DefaultMovieProps from "../../types/movieTypes";
 const movieService = new MoviesService();
 
 interface MoviesProps {
-  popularMovies: PopularMoviesProps[];
+  popularMovies: DefaultMovieProps[];
+  nowPlayingMovies: DefaultMovieProps[];
+  upcomingMovies:DefaultMovieProps[];
   isLoading: boolean;
   error: string;
 }
 const initialState: MoviesProps = {
   popularMovies: [],
+  nowPlayingMovies: [],
+  upcomingMovies: [],
   isLoading: false,
   error: "",
 };
@@ -20,6 +24,21 @@ export const fetchPopularMoives = createAsyncThunk(
     return response;
   }
 );
+export const fetchNowPlayingMovies = createAsyncThunk(
+  "movies/fetchNowPlayingMovies",
+  async (region: string) => {
+    const response = await movieService.getNowPlaying(region);
+    return response;
+  }
+);
+export const fetchUpcomingMovies = createAsyncThunk(
+  "movies/upcomingMovies",
+  async (page: number) => {
+    const response = await movieService.getUpcoming(page);
+    return response;
+  }
+);
+
 export const movieSlice = createSlice({
   name: "movies",
   initialState,
@@ -28,6 +47,12 @@ export const movieSlice = createSlice({
     [fetchPopularMoives.fulfilled.toString()]: (state: any, action: any) => {
       state.popularMovies = action.payload;
     },
+    [fetchNowPlayingMovies.fulfilled.toString()]: (state: any, action: any) => {
+      state.nowPlayingMovies = action.payload;
+    },
+    [fetchUpcomingMovies.fulfilled.toString()]: (state:any, action:any) => {
+      state.upcomingMovies = action.payload
+    }
   },
 });
 export default movieSlice.reducer;
