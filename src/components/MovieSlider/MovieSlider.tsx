@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './MovieSlider.module.scss'
 import Slider from 'react-slick';
-import DefaultMovieProps from '../../types/movieTypes';
+import {DefaultMovieProps} from '../../types/movieTypes';
 import { AiFillStar } from 'react-icons/ai';
+import Link from 'next/link';
 interface MovieSliderPops{
   movies:DefaultMovieProps[];
   sliderLabel:string,
@@ -14,7 +15,9 @@ const MovieSlider = ({movies, sliderLabel, region}:MovieSliderPops) => {
     dots:false,
     speed: 900,
     slidesToShow: 5,
-    slidesToScroll: 7,
+    slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 3000,
 };
   return (
     <div className={styles.sliderContainer}>
@@ -27,6 +30,7 @@ const MovieSlider = ({movies, sliderLabel, region}:MovieSliderPops) => {
         <Slider {...movieListSlider} >
           {movies.map((movie: DefaultMovieProps) => {
             return (
+              <Link href={`/movies/${movie.id}`}> 
               <div key={movie.id} className={styles.movieCard}>
                 <div style={{backgroundImage: `url(${movie.poster})`}} className={styles.movieCardImage}>
                   <div style={{position:'relative', top:3}}>
@@ -38,6 +42,7 @@ const MovieSlider = ({movies, sliderLabel, region}:MovieSliderPops) => {
                 </div>
                 <p className={styles.movieName}>{movie.title}</p>
               </div>
+              </Link>
             );
           })}
         </Slider>

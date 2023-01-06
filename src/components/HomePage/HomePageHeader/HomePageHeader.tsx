@@ -5,8 +5,9 @@ import { AppDispatch } from "../../../store/store";
 import { useAppSelector } from "../../../hooks/redux";
 import { fetchPopularMoives } from "../../../store/reducers/MovieSlice";
 import Slider from "react-slick";
-import DefaultMovieProps from "../../../types/movieTypes";
+import {DefaultMovieProps} from "../../../types/movieTypes";
 import { AiFillStar } from 'react-icons/ai';
+import Link from "next/link";
 
 const HomePageHeader = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -75,7 +76,9 @@ const HomePageHeader = () => {
           {popularMovies.map((movie: DefaultMovieProps) => {
             return (
               <div key={movie.id} className={styles.movieCard}>
+              <Link href={`/movies/${movie.id}`}>
                 <div style={{backgroundImage: `url(${movie.miniPoster})`}} className={styles.movieCardImage} />
+              </Link>
               </div>
             );
           })}
