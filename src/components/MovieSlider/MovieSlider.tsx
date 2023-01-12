@@ -13,9 +13,9 @@ const MovieSlider = ({movies, sliderLabel, region}:MovieSliderPops) => {
   const movieListSlider = {
     infinite: true,
     dots:false,
-    speed: 900,
+    speed: 1300,
     slidesToShow: 5,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
 };

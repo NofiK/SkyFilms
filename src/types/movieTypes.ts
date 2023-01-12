@@ -21,6 +21,7 @@ export interface MovieDetailsProps {
       countries: {iso_3166_1:string, name:string}[],
       release:string,
       runtime:number,
+      miniPoster:string,
 }
 // export default interface PopularMoviesProps{
 //     popularMovies: Array<PopularMovieProps>

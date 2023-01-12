@@ -7,6 +7,7 @@ import { AppDispatch } from "../../../store/store";
 import {
   fetchNowPlayingMovies,
   fetchUpcomingMovies,
+  fetchTopRatedMovies
 } from "../../../store/reducers/MovieSlice";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 const HomePageBody = () => {
@@ -18,10 +19,14 @@ const HomePageBody = () => {
   const upcomingMovies = useAppSelector(
     (state) => state.movieReducer.upcomingMovies
   );
+  const topRatedMovies = useAppSelector(
+    (state) => state.movieReducer.topRatedMovies
+  );
   useEffect(() => {
     setCurrentLocation(navigator.language.slice(3, 5));
     dispatch(fetchNowPlayingMovies("UA"));
     dispatch(fetchUpcomingMovies(1));
+    dispatch(fetchTopRatedMovies(1));
   }, []);
 
   return (
@@ -35,6 +40,10 @@ const HomePageBody = () => {
       <MovieSlider
         movies={upcomingMovies}
         sliderLabel={`Upcoming movies!`}
+      />
+      <MovieSlider
+        movies={topRatedMovies}
+        sliderLabel={`Top rated`}
       />
     </section>
   );

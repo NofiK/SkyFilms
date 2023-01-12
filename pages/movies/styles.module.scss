@@ -83,4 +83,27 @@
     transform: scale(0.95);
     cursor: pointer;
 }
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.loadingSpinner::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #ff2e66;
+  border-radius: 50%;
+  content: "";
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  left: 49%;
+  top:55%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
 

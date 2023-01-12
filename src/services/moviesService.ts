@@ -50,6 +50,18 @@ class MoviesService {
     );
     return res.results.map((movie: any) => this._transcriptFilmTrailer(movie));
   };
+  getTopRated = async (page: number) => {
+    const res = await this.getResource(
+      `${this._apiBase}/movie/top_rated?api_key=${this._apiKey}&language=en-US&page=${page}`
+    );
+    return res.results.map((movie: any) => this._transcriptFilm(movie));
+  };
+  searchMovies = async (query = '') => {
+    const res = await this.getResource(
+      `${this._apiBase}search/movie?api_key=${this._apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+    );
+    return res.results.map((movie: any) => this._transcriptFilmDetails(movie));
+  };
 
 
 
@@ -74,6 +86,7 @@ class MoviesService {
       description: movie.overview,
       rate: movie.vote_average,
       poster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+      miniPoster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
       backdrop: this._imgPath + movie.backdrop_path,
       budget: movie.budget,
       countries: movie.production_countries,

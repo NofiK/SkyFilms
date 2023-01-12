@@ -3,12 +3,13 @@ import styles from './styles.module.scss'
 import YouTube, { YouTubeProps } from 'react-youtube';
 import { useRouter } from 'next/router'
 import { AiOutlineRollback } from 'react-icons/ai';
+import { useAppSelector } from '../../src/hooks/redux';
 const MovieCard = ({movieTrailer, movieDetails}:any) => {
     const router = useRouter()
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
       // event.target.pauseVideo()
     }
-  
+    const isLoading = useAppSelector(state=>state.movieReducer.isLoading)
     const opts: YouTubeProps['opts'] = {
       height: '700',
       width: '100%',
@@ -22,6 +23,11 @@ const MovieCard = ({movieTrailer, movieDetails}:any) => {
       <AiOutlineRollback size={55} className={styles.navigateBack} onClick={() => router.back()}/>
      <hr className={styles.slashLine1}></hr>
      <div style={{backgroundColor:'black', height:700, width:'100%'}}>
+     {isLoading && (
+        <div className={styles.loadingScreen}>
+                  <div className={styles.loadingSpinner}></div>
+        </div>
+      )}
      {movieTrailer && (
       <YouTube videoId={movieTrailer[movieTrailer.length-1]?.youtubeKey} opts={opts} onReady={onPlayerReady} />
       )}

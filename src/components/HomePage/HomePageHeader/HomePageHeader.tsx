@@ -14,6 +14,7 @@ const HomePageHeader = () => {
   const popularMovies = useAppSelector(
     (state) => state.movieReducer.popularMovies
   );
+  const isLoading = useAppSelector((state)=>state.movieReducer.isLoading)
   useEffect(() => {
     dispatch(fetchPopularMoives(1));
   }, []);
@@ -37,7 +38,16 @@ const HomePageHeader = () => {
 };
   return (
     <div className={styles.homePageHeader}>
-      <Slider {...mainSlider} className={styles.mainSlider}>
+            
+
+      {isLoading && (
+        <div className={styles.loadingScreen}>
+                  <div className={styles.loadingSpinner}></div>
+        </div>
+      )}
+      {!isLoading && (
+        <>
+        <Slider {...mainSlider} className={styles.mainSlider}>
         {popularMovies.map((movie: DefaultMovieProps) => {
           return (
             <div key={movie.id}>
@@ -68,7 +78,7 @@ const HomePageHeader = () => {
           );
         })}
       </Slider>
-    
+      
       <div className={styles.secondarySlider}>
         <div className={styles.moviesListSlider}>
          <h3 className={styles.sliderLabel}>Popular movies</h3>
@@ -85,6 +95,8 @@ const HomePageHeader = () => {
         </Slider>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 };

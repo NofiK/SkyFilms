@@ -8,6 +8,8 @@ interface MoviesProps {
   popularMovies: DefaultMovieProps[];
   nowPlayingMovies: DefaultMovieProps[];
   upcomingMovies:DefaultMovieProps[];
+  topRatedMovies:DefaultMovieProps[];
+  searchedMovies:any;
   movieTrailer:any,
   movieDetails:any;
   isLoading: boolean;
@@ -17,9 +19,11 @@ const initialState: MoviesProps = {
   popularMovies: [],
   nowPlayingMovies: [],
   upcomingMovies: [],
+  searchedMovies:[],
+  topRatedMovies:[],
   movieTrailer:[],
   movieDetails:{},
-  isLoading: false,
+  isLoading: true,
   error: "",
 };
 export const fetchPopularMoives = createAsyncThunk(
@@ -57,6 +61,20 @@ export const fetchMovieTrailer = createAsyncThunk(
     return response;
   }
 );
+export const fetchTopRatedMovies = createAsyncThunk(
+  "movies/fetchTopRatedMovies",
+  async(page:number) => {
+    const response = await movieService.getTopRated(page);
+    return response;
+  }
+)
+export const fetchSearchedMovies = createAsyncThunk(
+  "movies/fetchSearchedMovies",
+  async (query: string) => {
+    const response = await movieService.searchMovies(query);
+    return response;
+  }
+);
 
 export const movieSlice = createSlice({
   name: "movies",
@@ -65,9 +83,13 @@ export const movieSlice = createSlice({
   extraReducers: {
     [fetchPopularMoives.fulfilled.toString()]: (state: any, action: any) => {
       state.popularMovies = action.payload;
+      state.isLoading = false;
+    },
+    [fetchPopularMoives.pending.toString()]: (state: any, action: any) => {
+      state.isLoading = true;
     },
     [fetchNowPlayingMovies.fulfilled.toString()]: (state: any, action: any) => {
-      state.nowPlayingMovies = action.payload;
+      state.nowPlayingMovies = action.payload
     },
     [fetchUpcomingMovies.fulfilled.toString()]: (state:any, action:any) => {
       state.upcomingMovies = action.payload
@@ -77,6 +99,16 @@ export const movieSlice = createSlice({
     },
     [fetchMovieTrailer.fulfilled.toString()]: (state:any, action:any) => {
       state.movieTrailer = action.payload
+      state.isLoading = false;
+    },
+    [fetchMovieTrailer.pending.toString()]: (state:any, action:any) => {
+      state.isLoading = true;
+    },
+    [fetchTopRatedMovies.fulfilled.toString()]: (state:any, action:any) =>{
+      state.topRatedMovies = action.payload
+    },
+    [fetchSearchedMovies.fulfilled.toString()]: (state:any, action:any) =>{
+      state.searchedMovies = action.payload
     }
   },
 });
