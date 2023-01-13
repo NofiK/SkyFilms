@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "./HomePageHeader.module.scss";
+import styles from "./styles.module.scss";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { useAppSelector } from "../../../hooks/redux";

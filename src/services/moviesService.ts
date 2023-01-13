@@ -37,7 +37,7 @@ class MoviesService {
     return res.results.map((movie: any) => this._transcriptFilm(movie));
   };
 
-  getDetails = async (id: number) => {
+  getMovieDetails = async (id: number) => {
     const res = await this.getResource(
       `${this._apiBase}/movie/${id}?api_key=${this._apiKey}&language=en-US`
     );
@@ -67,6 +67,14 @@ class MoviesService {
     );
     return res.cast.map((actor: any) => this._transcriptMovieActors(actor));
   };
+  getActorDetails = async (id: number) => {
+    const res = await this.getResource(
+      `${this._apiBase}/person/${id}?api_key=${this._apiKey}&language=en-US`
+    );
+    return this._transcriptActorDetail(res);
+  };
+
+  
   searchMovies = async (query = '') => {
     const res = await this.getResource(
       `${this._apiBase}search/movie?api_key=${this._apiKey}&query=${query}&language=en-US`
@@ -115,6 +123,19 @@ class MoviesService {
     return{
       id:actor.id,
       name:actor.name,
+    }
+  }
+  _transcriptActorDetail(actor:any){
+    return{
+      id:actor.id,
+      name:actor.name,
+      biography:actor.biography,
+      photo:actor.profile_path,
+      popularity:actor.popularity,
+      birthday:actor.birthday,
+      place_of_birth:actor.place_of_birth,
+      deathday:actor.deathday,
+      activity:actor.known_for_department
     }
   }
 }

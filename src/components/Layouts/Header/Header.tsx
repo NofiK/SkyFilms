@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { FC, useEffect, useRef, useState } from "react";
-import styles from "./Header.module.scss";
+import styles from "./styles.module.scss";
 import { RxMagnifyingGlass } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";

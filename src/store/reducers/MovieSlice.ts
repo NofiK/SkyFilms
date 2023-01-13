@@ -52,7 +52,7 @@ export const fetchUpcomingMovies = createAsyncThunk(
 export const fetchMovieDetails = createAsyncThunk(
   "movies/fetchMovieDetails",
   async (id: number) => {
-    const response = await movieService.getDetails(id);
+    const response = await movieService.getMovieDetails(id);
     return response;
   }
 );

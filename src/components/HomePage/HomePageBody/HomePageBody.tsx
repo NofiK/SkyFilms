@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MovieSlider from "../../MovieSlider/MovieSlider";
-import styles from "./HomePageBody.module.scss";
+import styles from "./styles.module.scss";
 import { useAppSelector } from "../../../hooks/redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./MovieSlider.module.scss";
+import styles from "./styles.module.scss";
 import Slider from "react-slick";
 import { DefaultMovieProps } from "../../types/movieTypes";
 import { AiFillStar } from "react-icons/ai";

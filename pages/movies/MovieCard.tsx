@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { AiOutlineRollback } from 'react-icons/ai';
 import { useAppSelector } from '../../src/hooks/redux';
 import MovieSlider from '../../src/components/MovieSlider/MovieSlider';
+import Link from 'next/link';
 const MovieCard = ({movieTrailer, movieDetails, movieActors, similarMovies}:any) => {
     const router = useRouter()
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -73,7 +74,9 @@ const MovieCard = ({movieTrailer, movieDetails, movieActors, similarMovies}:any)
           <p style={{width:'60%', textAlign:'end'}} className={styles.tableColumn2}>
             {movieActors.slice(0,7)?.map((actor:any) =>{
               return (
-                <span style={{color:'#0081B4'}} key={actor.id}>{actor.name}{movieActors.indexOf(actor)===6?"":', '}</span>
+                <Link key={actor.id} href={`/actors/${actor.id}`}>
+                 <span style={{color:'#0081B4'}} >{actor.name}{movieActors.indexOf(actor)===6?"":', '}</span>
+                </Link>
               )
             })}
             </p>

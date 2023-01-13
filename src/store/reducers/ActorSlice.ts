@@ -5,11 +5,13 @@ const movieService = new MoviesService();
 
 interface ActorsProps {
   movieActors: MovieActrosProps[];
+  actorDetails:any;
   isLoading: boolean;
   error: string;
 }
 const initialState: ActorsProps = {
   movieActors: [],
+  actorDetails:{},
   isLoading: true,
   error: "",
 };
@@ -20,14 +22,24 @@ export const fetchMovieActors = createAsyncThunk(
     return response;
   }
 );
+export const fetchActorDetails = createAsyncThunk(
+  "movies/fetchActorDetails",
+  async (id: number) => {
+    const response = await movieService.getActorDetails(id);
+    return response;
+  }
+);
 
 export const actorSlice = createSlice({
-  name: "movies",
+  name: "actors",
   initialState,
   reducers: {},
   extraReducers: {
     [fetchMovieActors.fulfilled.toString()]: (state: any, action: any) => {
       state.movieActors = action.payload;
+    },
+    [fetchActorDetails.fulfilled.toString()]: (state: any, action: any) => {
+      state.actorDetails = action.payload;
     },
   },
 });
