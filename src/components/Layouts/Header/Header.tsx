@@ -9,12 +9,9 @@ import { fetchSearchedMovies } from "../../../store/reducers/MovieSlice";
 import useDebounce from "../../../hooks/useDebounce";
 import { DefaultMovieProps, MovieDetailsProps } from "../../../types/movieTypes";
 
-type ChildrenProps = {
-  children: JSX.Element;
-};
-const Header: React.FC<ChildrenProps> = ({ children }) => {
+const Header = () => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>(" ");
+  const [searchValue, setSearchValue] = useState<string>("");
   const inputRef = useRef<any>(null)
   const debouncedValue = useDebounce<string>(searchValue, 1000);
   const dispatch = useDispatch<AppDispatch>();
@@ -34,7 +31,9 @@ const Header: React.FC<ChildrenProps> = ({ children }) => {
     <>
       <section className={styles.headerContainer}>
         <div className={styles.logoContainer}>
-          <img className={styles.logo} src="/Logo.png" alt="" />
+          <Link href={"/"}>
+            <img className={styles.logo} src="/Logo.png" alt="" />
+          </Link>
         </div>
         <div className={styles.navBar}>
           <div>
@@ -101,7 +100,6 @@ const Header: React.FC<ChildrenProps> = ({ children }) => {
           </div>
         </div>
       </section>
-      {children}
     </>
   );
 };

@@ -33,7 +33,7 @@ const HomePageHeader = () => {
     infinite: true,
     dots:false,
     speed: 500,
-    slidesToShow: 7,
+    slidesToShow: 8,
     slidesToScroll: 1,
 };
   return (

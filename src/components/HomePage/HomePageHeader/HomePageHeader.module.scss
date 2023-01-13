@@ -1,127 +1,124 @@
-.homePageHeader{
-    overflow: hidden;
-    color: #111111;
-    position: relative;
-    text-shadow: 2px 3px 2px rgba(0,0,0,0.3), 0px -4px 10px rgba(0, 0, 0, 0.3);
+.homePageHeader {
+  overflow: hidden;
+  color: #111111;
+  position: relative;
+  // text-shadow: 2px 3px 2px rgba(0,0,0,0.3), 0px -4px 10px rgba(0, 0, 0, 0.3);
 }
-.mainSliderDesription{
-    z-index: 6;
-    position: absolute;
-    top:50px
+.mainSliderDesription {
+  z-index: 6;
+  position: absolute;
+  top: 50px;
 }
-.backgroundIMG{
-    top:0;
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
+.backgroundIMG {
+  top: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
 }
-.mainSlider{
-    overflow: hidden;
+.mainSlider {
+  overflow: hidden;
 }
 .filmDescriptionContainer {
-    height: 424px;
-    width: 512px;
-    margin-left: 88px;
-    margin-top: 60px;
-    
-  }
-  .filmName {
-    padding: 10px;
-    color: white;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 40px;
-    margin-bottom: 10px;
-    background: rgba(103, 101, 113, 0.34);
-    -webkit-backdrop-filter: blur(0.1em);
-    backdrop-filter: blur(0.1em);
-    border-radius: 10px;
-  }
-  .filmDescription {
-    padding: 10px;
-    color: white;
-    font-style: normal;
-    font-weight: 700;
-    border-radius: 10px;
-    font-size: 14px;
-    line-height: 150%;
-    background: rgba(103, 101, 113, 0.34);
-    -webkit-backdrop-filter: blur(0.1em);
-    backdrop-filter: blur(0.1em);
-  }
-  .filmRate {
-    color: yellow;
-    padding-left: 10px;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  .buttonsContainer {
-    .trailerButton {
-     width: 120px;
-     height: 38px;
-     border: 1px solid #FFFFFF;
-     border-radius: 41px;
-     color:white;
-     background-color: transparent;
-     margin-left: 24px;
-     font-weight: 600;
-  font-size: 13px;
-    }
-    .watchButton {
-      width: 163px;
-      height: 46px;
-      background: #fa4776;
-      border-radius: 41px;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 23px;
-      letter-spacing: 0.04em;
-      border:none;
-      transition: 0.3s ease;
-      color:white;
-      cursor: pointer;
-      :hover{
-        background-color: #ff2e66;
-      }
-    }
-  }
-  .movieCard{
-    padding: 10px 0px;
-    width: 210px;
+  width: 512px;
+  padding-bottom: 20px;
+  margin-left: 88px;
+  margin-top: 60px;
+  background: rgba(103, 101, 113, 0.34);
+  -webkit-backdrop-filter: blur(0.1em);
+  backdrop-filter: blur(0.1em);
+  border-radius: 10px;
 }
-.movieCardImage{
-    width: 182px;
-    height: 258px;
-    margin:  auto;
-    background: url(https://media.vanityfair.com/photos/637269bd4ddf1ea7ae21f659/2:3/w_887,h_1331,c_limit/vf-1122-trump.png);
-    background-size: 100% 100%;
-    transition: transform .1s ease-in-out;
+.filmName {
+  padding: 20px 0 10px 10px;
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 40px;
+  margin-bottom: 10px;
+}
+.filmDescription {
+  padding: 10px;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+}
+.filmRate {
+  color: yellow;
+  padding-left: 12px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.buttonsContainer {
+  padding-left: 10px;
+  .trailerButton {
+    width: 120px;
+    height: 38px;
+    border: 1px solid #ffffff;
+    border-radius: 41px;
+    color: white;
+    background-color: transparent;
+    margin-left: 24px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .watchButton {
+    width: 163px;
+    height: 46px;
+    background: #fa4776;
+    border-radius: 41px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.04em;
+    border: none;
+    transition: 0.3s ease;
+    color: white;
+    cursor: pointer;
+    :hover {
+      background-color: #ff2e66;
+    }
+  }
+}
+.movieCard {
+  padding: 10px 0px;
+  width: 180px;
+}
+.movieCardImage {
+  width: 152px;
+  height: 228px;
+  margin: auto;
+  background: url(https://media.vanityfair.com/photos/637269bd4ddf1ea7ae21f659/2:3/w_887,h_1331,c_limit/vf-1122-trump.png);
+  background-size: 100% 100%;
+  transition: transform 0.1s ease-in-out;
 
-    &:hover{
-        transform: scale(0.9)  
-    }
+  &:hover {
+    transform: scale(0.9);
+    border:1px solid #fa4776;
+  }
 }
-.moviesListSlider{
-    z-index: 6;
-    position: absolute;
-    bottom:40px;
-    width: 90%;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(103, 101, 113, 0.34);
+.moviesListSlider {
+  z-index: 6;
+  position: absolute;
+  bottom: 40px;
+  width: 91%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(103, 101, 113, 0.34);
   -webkit-backdrop-filter: blur(0.1em);
   backdrop-filter: blur(0.1em);
 }
-.secondarySlider{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.secondarySlider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
-.sliderLabel{
-    position: absolute;
-    top: -50px;
-    color: white;
+.sliderLabel {
+  position: absolute;
+  top: -50px;
+  color: white;
 }
 @keyframes spinner {
   0% {
@@ -131,12 +128,12 @@
     transform: translate3d(-50%, -50%, 0) rotate(360deg);
   }
 }
-.loadingScreen{
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+.loadingScreen {
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 .loadingSpinner::before {
   animation: 1.5s linear infinite spinner;
@@ -149,7 +146,7 @@
   width: 70px;
   position: absolute;
   left: 49%;
-  top:40%;
+  top: 40%;
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
 }

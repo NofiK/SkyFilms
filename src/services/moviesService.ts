@@ -2,7 +2,6 @@ class MoviesService {
   private _apiKey: string = "efa6474dd16a64f01e1c0ea678996de6";
   private _apiBase: string = "https://api.themoviedb.org/3/";
   private _imgPath: string = "https://image.tmdb.org/t/p/original/";
-  //  private _videoPath:string = 'https://www.youtube.com/watch?v=';
 
   getResource = async (url: string) => {
     let result = await fetch(url);
@@ -56,14 +55,24 @@ class MoviesService {
     );
     return res.results.map((movie: any) => this._transcriptFilm(movie));
   };
+  getSimilar = async (id: number) => {
+    const res = await this.getResource(
+      `${this._apiBase}/movie/${id}/similar?api_key=${this._apiKey}&language=en-US&page=1`
+    );
+    return res.results.map((movie: any) => this._transcriptFilm(movie));
+  };
+  getMovieActors = async (id: number) => {
+    const res = await this.getResource(
+      `${this._apiBase}/movie/${id}/credits?api_key=${this._apiKey}&language=en-US`
+    );
+    return res.cast.map((actor: any) => this._transcriptMovieActors(actor));
+  };
   searchMovies = async (query = '') => {
     const res = await this.getResource(
-      `${this._apiBase}search/movie?api_key=${this._apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+      `${this._apiBase}search/movie?api_key=${this._apiKey}&query=${query}&language=en-US`
     );
     return res.results.map((movie: any) => this._transcriptFilmDetails(movie));
   };
-
-
 
   _transcriptFilm(movie: any) {
     return {
@@ -100,6 +109,12 @@ class MoviesService {
       youtubeKey:movie.key,
       type:movie.type,
       name:movie.name,
+    }
+  }
+  _transcriptMovieActors(actor:any){
+    return{
+      id:actor.id,
+      name:actor.name,
     }
   }
 }

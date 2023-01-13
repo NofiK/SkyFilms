@@ -23,12 +23,19 @@
     transition: transform .1s ease-in-out;
 
     &:hover{
-        transform: scale(0.95)  
+        transform: scale(0.95);
+        border:1px solid #fa4776;
     }
 }
-
+.countryFlag{
+    width: 29px;
+    height: 29px;
+    position: relative;
+    left: 10px;
+    top: 7px;
+  }
 .sliderLabel{
-    margin-left: 40px;
+    margin-left: 26px;
     color: white;
     font-size: 26px;
     font-weight: 400;

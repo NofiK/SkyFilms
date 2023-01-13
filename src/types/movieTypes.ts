@@ -23,6 +23,10 @@ export interface MovieDetailsProps {
       runtime:number,
       miniPoster:string,
 }
+export interface MovieActrosProps{
+    id:number,
+    name:string,
+}
 // export default interface PopularMoviesProps{
 //     popularMovies: Array<PopularMovieProps>
 // }

@@ -9,6 +9,7 @@ interface MoviesProps {
   nowPlayingMovies: DefaultMovieProps[];
   upcomingMovies:DefaultMovieProps[];
   topRatedMovies:DefaultMovieProps[];
+  similarMovies:DefaultMovieProps[];
   searchedMovies:any;
   movieTrailer:any,
   movieDetails:any;
@@ -21,6 +22,7 @@ const initialState: MoviesProps = {
   upcomingMovies: [],
   searchedMovies:[],
   topRatedMovies:[],
+  similarMovies:[],
   movieTrailer:[],
   movieDetails:{},
   isLoading: true,
@@ -68,6 +70,13 @@ export const fetchTopRatedMovies = createAsyncThunk(
     return response;
   }
 )
+export const fetchSimilarMovies = createAsyncThunk(
+  "movies/fetchSimilarMovies",
+  async (id: number) => {
+    const response = await movieService.getSimilar(id);
+    return response;
+  }
+);
 export const fetchSearchedMovies = createAsyncThunk(
   "movies/fetchSearchedMovies",
   async (query: string) => {
@@ -106,6 +115,9 @@ export const movieSlice = createSlice({
     },
     [fetchTopRatedMovies.fulfilled.toString()]: (state:any, action:any) =>{
       state.topRatedMovies = action.payload
+    },
+    [fetchSimilarMovies.fulfilled.toString()]: (state:any, action:any) =>{
+      state.similarMovies = action.payload
     },
     [fetchSearchedMovies.fulfilled.toString()]: (state:any, action:any) =>{
       state.searchedMovies = action.payload
