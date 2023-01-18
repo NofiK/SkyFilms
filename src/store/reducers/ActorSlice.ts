@@ -1,17 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import MoviesService from "../../services/moviesService";
-import { MovieActrosProps } from "../../types/movieTypes";
+import { ActorDetailsProps, DefaultMovieProps, MovieActrosProps } from "../../types/movieTypes";
 const movieService = new MoviesService();
 
 interface ActorsProps {
   movieActors: MovieActrosProps[];
   actorDetails:any;
+  actorMovies:DefaultMovieProps[];
   isLoading: boolean;
   error: string;
 }
 const initialState: ActorsProps = {
   movieActors: [],
   actorDetails:{},
+  actorMovies:[],
   isLoading: true,
   error: "",
 };
@@ -29,6 +31,13 @@ export const fetchActorDetails = createAsyncThunk(
     return response;
   }
 );
+export const fetchActorMovies = createAsyncThunk(
+  "movies/fetchActorMovies",
+  async (id: number) => {
+    const response = await movieService.getActorMovies(id);
+    return response;
+  }
+);
 
 export const actorSlice = createSlice({
   name: "actors",
@@ -40,6 +49,9 @@ export const actorSlice = createSlice({
     },
     [fetchActorDetails.fulfilled.toString()]: (state: any, action: any) => {
       state.actorDetails = action.payload;
+    },
+    [fetchActorMovies.fulfilled.toString()]: (state: any, action: any) => {
+      state.actorMovies = action.payload;
     },
   },
 });

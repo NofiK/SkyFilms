@@ -100,6 +100,13 @@
     transform: translate3d(-50%, -50%, 0) rotate(360deg);
   }
 }
+.movieActor{
+  color:rgb(72, 115, 245);
+  transition: 0.1s ease-in-out;
+  &:hover{
+    color:rgb(153, 177, 249)
+  }
+}
 .loadingSpinner::before {
   animation: 1.5s linear infinite spinner;
   animation-play-state: inherit;
@@ -114,5 +121,15 @@
   top:55%;
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
+}
+.movieDescription{
+  width: 85%;
+ h2{
+  font-size: 20px;
+  color: #fa4776;
+  font-weight: 500;
+ }
+ color:white;
+ font-size:18px
 }
 

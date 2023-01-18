@@ -5,8 +5,8 @@ import { AppDispatch } from "../../../store/store";
 import { useAppSelector } from "../../../hooks/redux";
 import { fetchPopularMoives } from "../../../store/reducers/MovieSlice";
 import Slider from "react-slick";
-import {DefaultMovieProps} from "../../../types/movieTypes";
-import { AiFillStar } from 'react-icons/ai';
+import { DefaultMovieProps } from "../../../types/movieTypes";
+import { AiFillStar } from "react-icons/ai";
 import Link from "next/link";
 
 const HomePageHeader = () => {
@@ -14,7 +14,7 @@ const HomePageHeader = () => {
   const popularMovies = useAppSelector(
     (state) => state.movieReducer.popularMovies
   );
-  const isLoading = useAppSelector((state)=>state.movieReducer.isLoading)
+  const isLoading = useAppSelector((state) => state.movieReducer.isLoading);
   useEffect(() => {
     dispatch(fetchPopularMoives(1));
   }, []);
@@ -31,71 +31,87 @@ const HomePageHeader = () => {
   };
   const secondarySlider = {
     infinite: true,
-    dots:false,
+    dots: false,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 1,
-};
+  };
   return (
     <div className={styles.homePageHeader}>
-            
-
       {isLoading && (
         <div className={styles.loadingScreen}>
-                  <div className={styles.loadingSpinner}></div>
+          <div className={styles.loadingSpinner}></div>
         </div>
       )}
       {!isLoading && (
         <>
-        <Slider {...mainSlider} className={styles.mainSlider}>
-        {popularMovies.map((movie: DefaultMovieProps) => {
-          return (
-            <div key={movie.id}>
-              <div className={styles.backgroundIMGBox}>
-                <img className={styles.backgroundIMG} src={"https://image.tmdb.org/t/p/original" + movie.backdrop} alt=""
-                />
-              </div>
-
-              <div className={styles.mainSliderDesription}>
-                <section className={styles.filmDescriptionContainer}>
-                  <h1 className={styles.filmName}>{movie.title}</h1>
-                  <p className={styles.filmDescription}>
-                    {movie.description.slice(0, 250) + "..."}
-                  </p>
-                  <p className={styles.filmRate}>
-                    {movie.rate}/10{" "}
-                    <AiFillStar
-                      style={{ width: 20, height: 20, color: "yellow" }}
+          <Slider {...mainSlider} className={styles.mainSlider}>
+            {popularMovies.map((movie: DefaultMovieProps) => {
+              return (
+                <div key={movie.id}>
+                  <div className={styles.backgroundIMGBox}>
+                    <img
+                      className={styles.backgroundIMG}
+                      src={
+                        "https://image.tmdb.org/t/p/original" + movie.backdrop
+                      }
+                      alt=""
                     />
-                  </p>
-                  <div className={styles.buttonsContainer}>
-                    <button className={styles.watchButton}>Watch Now</button>
-                    <button className={styles.trailerButton}>Trailer</button>
                   </div>
-                </section>
-              </div>
+
+                  <div className={styles.mainSliderDesription}>
+                    <section className={styles.filmDescriptionContainer}>
+                      <h1 className={styles.filmName}>{movie.title}</h1>
+                      <p className={styles.filmDescription}>
+                        {movie.description.slice(0, 250) + "..."}
+                      </p>
+                      <p className={styles.filmRate}>
+                        {movie.rate}/10{" "}
+                        <AiFillStar
+                          style={{ width: 20, height: 20, color: "yellow" }}
+                        />
+                      </p>
+                      <div className={styles.buttonsContainer}>
+                        <Link href={`/movies/${movie.id}`}>
+                          <button className={styles.watchButton}>
+                            Watch Now
+                          </button>
+                        </Link>
+                        <Link href={`/movies/${movie.id}`}>
+                          <button className={styles.trailerButton}>
+                            Trailer
+                          </button>
+                        </Link>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
+
+          <div className={styles.secondarySlider}>
+            <div className={styles.moviesListSlider}>
+              <h3 className={styles.sliderLabel}>Popular movies</h3>
+              <Slider {...secondarySlider}>
+                {popularMovies.map((movie: DefaultMovieProps) => {
+                  return (
+                    <div key={movie.id} className={styles.movieCard}>
+                      <Link href={`/movies/${movie.id}`}>
+                        <div
+                          style={{
+                            backgroundImage: `url(${movie.miniPoster})`,
+                          }}
+                          className={styles.movieCardImage}
+                        />
+                      </Link>
+                    </div>
+                  );
+                })}
+              </Slider>
             </div>
-          );
-        })}
-      </Slider>
-      
-      <div className={styles.secondarySlider}>
-        <div className={styles.moviesListSlider}>
-         <h3 className={styles.sliderLabel}>Popular movies</h3>
-        <Slider {...secondarySlider} >
-          {popularMovies.map((movie: DefaultMovieProps) => {
-            return (
-              <div key={movie.id} className={styles.movieCard}>
-              <Link href={`/movies/${movie.id}`}>
-                <div style={{backgroundImage: `url(${movie.miniPoster})`}} className={styles.movieCardImage} />
-              </Link>
-              </div>
-            );
-          })}
-        </Slider>
-        </div>
-      </div>
-      </>
+          </div>
+        </>
       )}
     </div>
   );

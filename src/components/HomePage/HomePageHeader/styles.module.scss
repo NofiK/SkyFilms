@@ -57,12 +57,17 @@
     width: 120px;
     height: 38px;
     border: 1px solid #ffffff;
+    cursor: pointer;
     border-radius: 41px;
     color: white;
+    transition: 0.3s ease;
     background-color: transparent;
     margin-left: 24px;
     font-weight: 600;
     font-size: 13px;
+    &:hover{
+      opacity: 80%;
+    }
   }
   .watchButton {
     width: 163px;
@@ -77,8 +82,8 @@
     transition: 0.3s ease;
     color: white;
     cursor: pointer;
-    :hover {
-      background-color: #ff2e66;
+    &:hover {
+      background-color: #ff1755;
     }
   }
 }

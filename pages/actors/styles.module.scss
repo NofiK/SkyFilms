@@ -1,0 +1,82 @@
+.actorCard {
+  margin-top: 140px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.aboutActor {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 10px auto 100px auto;
+}
+.actorDescription {
+  margin-left: 40px;
+  width: 35%;
+}
+.actorPhoto {
+  width: 330px;
+  height: 500px;
+  border-radius: 5px;
+}
+.actorName {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.actorBiography {
+  font-size: 18px;
+  color: white;
+  margin-left: 40px;
+  p {
+    color: #fa4776;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  span {
+    color: rgb(72, 115, 245);
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    &:hover {
+      color: rgb(153, 177, 249);
+    }
+  }
+}
+.modalBiography {
+  font-size: 16px;
+  margin-bottom: 10px;
+  span {
+    color: rgb(231, 231, 231);
+    font-size: 18px;
+  }
+}
+.modalBiography {
+  font-size: 18px;
+  color: rgb(18, 18, 18);
+  p {
+    color: #fa4776;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+}
+.tableColumn1 {
+  color: #fa4776;
+  font-size: 20px;
+  margin: 10px 10px 10px 0px;
+  width: 50%;
+}
+.tableColumn2 {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  position: relative;
+  top: 1px;
+  width: 50%;
+  margin: 10px 10px 10px 0px;
+}
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

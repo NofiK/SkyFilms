@@ -9,18 +9,18 @@ interface MovieSliderPops {
   movies: DefaultMovieProps[];
   sliderLabel: string;
   region?: string;
+  slidesToScroll?:number
 }
-const MovieSlider = ({ movies, sliderLabel, region }: MovieSliderPops) => {
+const MovieSlider = ({ movies, sliderLabel, region, slidesToScroll=1 }: MovieSliderPops) => {
   const movieListSlider = {
     infinite: true,
     dots: false,
     speed: 1300,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: slidesToScroll,
     autoplay: true,
     autoplaySpeed: 3000,
   };
-
   return (
     <div className={styles.sliderContainer}>
       <div className={styles.moviesSlider}>
@@ -39,7 +39,7 @@ const MovieSlider = ({ movies, sliderLabel, region }: MovieSliderPops) => {
               <Link key={movie.id} href={`/movies/${movie.id}`}>
                 <div className={styles.movieCard}>
                   <div
-                    style={{ backgroundImage: `url(${movie.poster})` }}
+                    style={{ backgroundImage: `url(${movie.poster==='https://image.tmdb.org/t/p/w500null'?'https://i.pinimg.com/originals/60/88/0e/60880ef799bb1edd172d645c39906c29.jpg':movie.poster})` }}
                     className={styles.movieCardImage}
                   >
                     <div style={{ position: "relative", top: 3 }}>

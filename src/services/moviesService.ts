@@ -73,15 +73,18 @@ class MoviesService {
     );
     return this._transcriptActorDetail(res);
   };
-
-  
+  getActorMovies = async (id: number) => {
+    const res = await this.getResource(
+      `${this._apiBase}/person/${id}/movie_credits?api_key=${this._apiKey}&language=en-US`
+    );
+    return res.cast.map((movie: any) => this._transcriptFilm(movie));
+  };
   searchMovies = async (query = '') => {
     const res = await this.getResource(
       `${this._apiBase}search/movie?api_key=${this._apiKey}&query=${query}&language=en-US`
     );
     return res.results.map((movie: any) => this._transcriptFilmDetails(movie));
   };
-
   _transcriptFilm(movie: any) {
     return {
       id: movie.id,
@@ -130,12 +133,12 @@ class MoviesService {
       id:actor.id,
       name:actor.name,
       biography:actor.biography,
-      photo:actor.profile_path,
+      photo:this._imgPath+actor.profile_path,
       popularity:actor.popularity,
       birthday:actor.birthday,
       place_of_birth:actor.place_of_birth,
       deathday:actor.deathday,
-      activity:actor.known_for_department
+      career:actor.known_for_department
     }
   }
 }

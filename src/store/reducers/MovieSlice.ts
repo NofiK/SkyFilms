@@ -13,6 +13,7 @@ interface MoviesProps {
   searchedMovies:any;
   movieTrailer:any,
   movieDetails:any;
+  isLogged:boolean;
   isLoading: boolean;
   error: string;
 }
@@ -25,6 +26,7 @@ const initialState: MoviesProps = {
   similarMovies:[],
   movieTrailer:[],
   movieDetails:{},
+  isLogged:false,
   isLoading: true,
   error: "",
 };
@@ -88,7 +90,11 @@ export const fetchSearchedMovies = createAsyncThunk(
 export const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    login(state, action){
+      state.isLogged = action.payload
+    }
+  },
   extraReducers: {
     [fetchPopularMoives.fulfilled.toString()]: (state: any, action: any) => {
       state.popularMovies = action.payload;

@@ -27,6 +27,22 @@ export interface MovieActrosProps{
     id:number,
     name:string,
 }
-// export default interface PopularMoviesProps{
-//     popularMovies: Array<PopularMovieProps>
-// }
+
+export interface MovieTrailerProps{
+      id:number
+      youtubeKey:string,
+      type:number & string,
+      name:string,
+  }
+ 
+  export interface ActorDetailsProps{
+      id:number,
+      name:string,
+      biography:string,
+      photo:string,
+      popularity:number,
+      birthday:number,
+      place_of_birth:string,
+      deathday?:number,
+      career:string
+    }
