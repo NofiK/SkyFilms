@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { ActorDetailsProps, DefaultMovieProps } from "../../src/types/movieTypes";
+import {
+  ActorDetailsProps,
+  DefaultMovieProps,
+} from "../../src/types/movieTypes";
 import Modal from "react-modal";
 import MovieSlider from "../../src/components/MovieSlider/MovieSlider";
 interface ActorCardProps {
@@ -48,33 +51,48 @@ const ActorCard = ({ actorDetails, actorMovies }: ActorCardProps) => {
       >
         <div className={styles.modalBiography}>
           <p>Actor's Biography:</p>
-          <span className={styles.modalBiography}>
-            {actorDetails.biography}
-          </span>
+          {actorDetails?.biography && (
+            <span className={styles.modalBiography}>
+              {actorDetails.biography}
+            </span>
+          )}
         </div>
       </Modal>
       <div className={styles.aboutActor}>
-        <img className={styles.actorPhoto} src={actorDetails.photo==='https://image.tmdb.org/t/p/w500null'?'https://i.pinimg.com/originals/60/88/0e/60880ef799bb1edd172d645c39906c29.jpg':actorDetails.photo} alt="" />
+        <img
+          className={styles.actorPhoto}
+          src={
+            actorDetails?.photo === "https://image.tmdb.org/t/p/w500null"
+              ? "https://i.pinimg.com/originals/60/88/0e/60880ef799bb1edd172d645c39906c29.jpg"
+              : actorDetails?.photo
+          }
+          alt=""
+        />
         <div style={{ display: "flex", flexDirection: "column", width: "50%" }}>
           <div className={styles.actorDescription}>
-            <h1 className={styles.actorName}>{actorDetails.name}</h1>
-            <div className={styles.tableRow}>
-              <p className={styles.tableColumn1}>Career:</p>
-              <p className={styles.tableColumn2}>{actorDetails.career}</p>
-            </div>
-            {actorDetails.birthday && (
+            {actorDetails?.name && actorDetails?.career && (
+              <>
+                <h1 className={styles.actorName}>{actorDetails?.name}</h1>
+                <div className={styles.tableRow}>
+                  <p className={styles.tableColumn1}>Career:</p>
+                  <p className={styles.tableColumn2}>{actorDetails?.career}</p>
+                </div>
+              </>
+            )}
+
+            {actorDetails?.birthday && (
               <div className={styles.tableRow}>
                 <p className={styles.tableColumn1}>Date of Birth:</p>
                 <p className={styles.tableColumn2}>{actorDetails.birthday}</p>
               </div>
             )}
-            {actorDetails.deathday && (
+            {actorDetails?.deathday && (
               <div className={styles.tableRow}>
                 <p className={styles.tableColumn1}>Date of Death:</p>
                 <p className={styles.tableColumn2}>{actorDetails.deathday}</p>
               </div>
             )}
-            {actorDetails.place_of_birth && (
+            {actorDetails?.place_of_birth && (
               <div className={styles.tableRow}>
                 <p className={styles.tableColumn1}>Place of Birth:</p>
                 <p className={styles.tableColumn2}>
@@ -85,9 +103,13 @@ const ActorCard = ({ actorDetails, actorMovies }: ActorCardProps) => {
           </div>
           <div className={styles.actorBiography}>
             <p>Actor's Biography:</p>
-            {actorDetails?.biography?.slice(0, 950)}
-            {actorDetails?.biography?.length > 949 && (
-              <span onClick={openModal}>...</span>
+            {actorDetails?.biography && (
+              <>
+                {actorDetails?.biography?.slice(0, 950)}
+                {actorDetails?.biography?.length > 949 && (
+                  <span onClick={openModal}>...</span>
+                )}
+              </>
             )}
           </div>
         </div>

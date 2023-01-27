@@ -60,12 +60,14 @@ const MovieCard = ({
       <hr className={styles.slashLine2}></hr>
       <div className={styles.movieDescriptionBox}>
         <div style={{ width: "100%" }}>
-          <h1 className={styles.movieTitle}>{movieDetails.title}</h1>
-          {movieDetails.release && (
+          {movieDetails?.title && (
+            <h1 className={styles.movieTitle}>{movieDetails.title}</h1>
+          )}
+          {movieDetails?.release && (
             <div className={styles.tableRow}>
               <p className={styles.tableColumn1}>Year:</p>
               <p className={styles.tableColumn2}>
-                {movieDetails.release?.slice(0, 4)}
+                {movieDetails?.release?.slice(0, 4)}
               </p>
             </div>
           )}
@@ -139,7 +141,7 @@ const MovieCard = ({
               style={{ width: "60%", textAlign: "end" }}
               className={styles.tableColumn2}
             >
-              {movieActors.slice(0, 7)?.map((actor: any) => {
+              {movieActors?.slice(0, 7)?.map((actor: any) => {
                 return (
                   <Link key={actor.id} href={`/actors/${actor.id}`}>
                     <span className={styles.movieActor}>
@@ -152,20 +154,23 @@ const MovieCard = ({
             </p>
           </div>
           <div className={styles.movieDescription}>
-           <h2 >Description</h2>
-           {movieDetails.description}
+            <h2>Description</h2>
+            
+            {movieDetails?.description}
           </div>
-          
         </div>
-        <img
+        {movieDetails?.backdrop && (
+          <img
           className={styles.movieImg}
           src={
-            movieDetails.backdrop === "https://image.tmdb.org/t/p/original/null"
+            movieDetails?.backdrop === "https://image.tmdb.org/t/p/original/null"
               ? "https://i.pinimg.com/originals/60/88/0e/60880ef799bb1edd172d645c39906c29.jpg"
-              : movieDetails.backdrop
+              : movieDetails?.backdrop
           }
           alt=""
         />
+        )}
+        
       </div>
       <MovieSlider movies={similarMovies} sliderLabel={`Similar movies`} />
     </section>

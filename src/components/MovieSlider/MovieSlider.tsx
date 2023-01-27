@@ -9,9 +9,14 @@ interface MovieSliderPops {
   movies: DefaultMovieProps[];
   sliderLabel: string;
   region?: string;
-  slidesToScroll?:number
+  slidesToScroll?: number;
 }
-const MovieSlider = ({ movies, sliderLabel, region, slidesToScroll=1 }: MovieSliderPops) => {
+const MovieSlider = ({
+  movies,
+  sliderLabel,
+  region,
+  slidesToScroll = 1,
+}: MovieSliderPops) => {
   const movieListSlider = {
     infinite: true,
     dots: false,
@@ -33,36 +38,32 @@ const MovieSlider = ({ movies, sliderLabel, region, slidesToScroll=1 }: MovieSli
             />
           )}
         </h3>
-        <Slider {...movieListSlider}>
-          {movies.map((movie: DefaultMovieProps) => {
-            return (
-              <Link key={movie.id} href={`/movies/${movie.id}`}>
-                <div className={styles.movieCard}>
-                  <div
-                    style={{ backgroundImage: `url(${movie.poster==='https://image.tmdb.org/t/p/w500null'?'https://i.pinimg.com/originals/60/88/0e/60880ef799bb1edd172d645c39906c29.jpg':movie.poster})` }}
-                    className={styles.movieCardImage}
-                  >
-                    <div style={{ position: "relative", top: 3 }}>
-                      <span className={styles.movieRate}>
-                        {movie.rate.toString().slice(0, 3)}
-                      </span>
-                      <AiFillStar
-                        style={{
-                          width: 20,
-                          height: 20,
-                          color: "yellow",
-                          position: "relative",
-                          top: 4,
-                        }}
-                      />
+        {movies && (
+          <Slider {...movieListSlider}>
+            {movies.map((movie: DefaultMovieProps) => {
+              return (
+                <Link key={movie.id} href={`/movies/${movie.id}`}>
+                  <div className={styles.movieCard}>
+                    <div
+                      style={{
+                        backgroundImage: `url(${movie.poster === "https://image.tmdb.org/t/p/w500null" ? "https://i.pinimg.com/originals/60/88/0e/60880ef799bb1edd172d645c39906c29.jpg": movie.poster})`,
+                      }}
+                      className={styles.movieCardImage}
+                    >
+                      <div style={{ position: "relative", top: 3 }}>
+                        <span className={styles.movieRate}>
+                          {movie.rate.toString().slice(0, 3)}
+                        </span>
+                        <AiFillStar className={styles.starIcon}/>
+                      </div>
                     </div>
+                    <p className={styles.movieName}>{movie.title}</p>
                   </div>
-                  <p className={styles.movieName}>{movie.title}</p>
-                </div>
-              </Link>
-            );
-          })}
-        </Slider>
+                </Link>
+              );
+            })}
+          </Slider>
+        )}
       </div>
     </div>
   );

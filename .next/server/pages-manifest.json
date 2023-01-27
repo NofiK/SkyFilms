@@ -1,9 +1,12 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
+  "/actors/ActorCard": "pages/actors/ActorCard.html",
+  "/actors/[id]": "pages/actors/[id].html",
+  "/": "pages/index.html",
+  "/movies/[id]": "pages/movies/[id].html",
+  "/signup": "pages/signup.html",
+  "/movies/MovieCard": "pages/movies/MovieCard.html",
   "/_document": "pages/_document.js",
-  "/movies/[id]": "pages/movies/[id].js",
-  "/actors/[id]": "pages/actors/[id].js",
-  "/": "pages/index.js",
-  "/signup": "pages/signup.js"
+  "/404": "pages/404.html"
 }
